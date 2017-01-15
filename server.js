@@ -11,13 +11,13 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 const hbs = handlebars.create({
   extname: '.hbs',
-  defaultLayout: 'app'
+  defaultLayout: 'index'
 });
 
 app.use('/products', products);
 
 app.get('/', (req, res) =>{
-  console.log('testing server');
+  res.end();
 });
 
 app.engine('hbs', hbs.engine);
