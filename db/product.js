@@ -8,10 +8,10 @@ function getAllProducts(){
 }
 
 function createNewProduct(data){
-  data['id'] = idCounter;
+  data.id = idCounter;
   productsArray.push(data);
   idCounter++;
-  console.log(productsArray);
+  // console.log(productsArray);
 } 
 
 
@@ -32,9 +32,21 @@ function deleteProductById(id){
   }
 }
 
+// function isProductDataValid(data){
+//  for(var key in productsArray.data){
+//     if(productsArray[key].data === ''){
+//       return false;
+//     } else {
+//       return true;
+//     }
+//   }
+// }
+
 module.exports = {
+ 
   createNewProduct : createNewProduct,
   getAllProducts : getAllProducts,
   getProductById : getProductById,
-  deleteProductById : deleteProductById
+  deleteProductById : deleteProductById,
+  // isProductDataValid : isProductDataValid
 };

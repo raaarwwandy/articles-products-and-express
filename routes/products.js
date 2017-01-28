@@ -6,7 +6,7 @@ const productsStore = require('../db/product.js');
 
 // const idCounter = {id: 0};
 // const productTemplate = { };
-// const productList = productsStore.getAllProducts();
+const productList = productsStore.getAllProducts();
 
 router.get('/', (req, res) =>{  
   res.render('products/products');
@@ -19,15 +19,15 @@ router.get('/new', (req, res ) =>{
 
 
 router.post('/', (req, res) =>{
-  // go through the length of body
-  let product = productsStore.createNewProduct(req.body);
-  for(var i = 0; i < product.length; i++){
+  let product = req.body;
+  if(product.name !== ''){
+    productsStore.createNewProduct(product);
     console.log(product);
+    res.redirect('/products');
+  } else {
+    res.redirect('/products/new');
   }
-  // check to see if there is a value in each property
-  // post if there is a value in each one
-  // if not then redirect to products/new 
-  });
+});
 
 
 router.put('/:id', (req, res) =>{
