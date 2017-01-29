@@ -18,16 +18,20 @@ function createNewProduct(data){
 
 function getProductById(id){
   for(var i = 0; i < productsArray.length; i++){
-   if(productsArray[i].id === parseInt(id)){
-   return productsArray[i].id;
+    // console.log(`restult of checking id`, productsArray[i].id);
+    // console.log(parseInt(id));
+   if(productsArray[i].id === parseInt(id)){ 
+   return productsArray[i];
+   console.log(`result of product productsArray`, productsArray[i]);
    }
   }
 }
 
 function deleteProductById(id){
   for(var i = 0; i < productsArray.length; i++){
-    if(productsArray[i].id === parseInt(id)){
+    if(productsArray[i].id === parseInt(productsArray[i].id)){
       productsArray.splice(i , 1, 0);
+      return productsArray;
     }
   }
 }

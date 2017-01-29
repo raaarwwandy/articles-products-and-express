@@ -5,25 +5,33 @@ const router = express.Router();
 const productsStore = require('../db/product.js');
 
 // const idCounter = {id: 0};
-// const productTemplate = { };
-const productList = productsStore.getAllProducts();
 
 router.get('/', (req, res) =>{  
   res.render('products/products');
 });
 
-
-router.get('/new', (req, res ) =>{
+router.get('/new', (req, res) =>{
   res.render('products/new');
+});
+
+router.get('/:id', (req, res) =>{
+  let productId = req.params.id;
+  let singleProduct = productsStore.getProductById(productId);
+  let productList = [];
+  productList.push(singleProduct);
+  // console.log(`result of product list`,productList);
+  res.render('products/products', {productsArray: productList});
 });
 
 
 router.post('/', (req, res) =>{
-  let product = req.body;
-  if(product.name !== ''){
-    productsStore.createNewProduct(product);
-    console.log(product);
-    res.redirect('/products');
+  let products = req.body;
+  let productList = [];
+  if(products.name !== ''){
+    productsStore.createNewProduct(products);
+    productList.push(products);
+    // console.log(`array of`, products);
+    res.render('products/products', {productsArray: productList});
   } else {
     res.redirect('/products/new');
   }
@@ -39,7 +47,7 @@ router.put('/:id', (req, res) =>{
   let newId = req.body.id;
   let newProduct = { product : newName, price : newPrice, availability : newAvailability, id: productId };
   req.body = newProduct;
-  res.end();
+  res.render('products/edit');
 });
 
 
