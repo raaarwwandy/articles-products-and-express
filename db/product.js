@@ -18,11 +18,8 @@ function createNewProduct(data){
 
 function getProductById(id){
   for(var i = 0; i < productsArray.length; i++){
-    // console.log(`restult of checking id`, productsArray[i].id);
-    // console.log(parseInt(id));
    if(productsArray[i].id === parseInt(id)){ 
    return productsArray[i];
-   console.log(`result of product productsArray`, productsArray[i]);
    }
   }
 }

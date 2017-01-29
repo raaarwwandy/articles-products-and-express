@@ -6,7 +6,7 @@ const productsStore = require('../db/product.js');
 
 // const idCounter = {id: 0};
 
-router.get('/', (req, res) =>{  
+router.get('/', (req, res) =>{
   res.render('products/products');
 });
 
@@ -19,7 +19,6 @@ router.get('/:id', (req, res) =>{
   let singleProduct = productsStore.getProductById(productId);
   let productList = [];
   productList.push(singleProduct);
-  // console.log(`result of product list`,productList);
   res.render('products/products', {productsArray: productList});
 });
 
