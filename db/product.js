@@ -1,20 +1,24 @@
 /*jshint esversion:6 */
-
+const PG_PASS = process.env.PG_PASS;
+const pgp = require('pg-promise')();
+const db = pgp({ 
+  host: 'localhost',
+  port: 5432,
+  database: 'articles_products_express',
+  user: "articles_products_user",
+  password: PG_PASS 
+});
 let productsArray = [ ];
 let idCounter = 0;
  
 function getAllProducts(){
-  return productsArray;
+  return db.any('SELECT * FROM products');
 }
 
 function createNewProduct(data){
-  data.id = idCounter;
-  productsArray.push(data);
-  idCounter++;
-  // console.log(productsArray);
-} 
-
-
+  console.log(data);
+  return db.none('INSERT INTO products(name, price, inventory) VALUES (${name}, ${price}, ${inventory})');
+  }
 
 function getProductById(id){
   for(var i = 0; i < productsArray.length; i++){

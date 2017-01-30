@@ -5,9 +5,11 @@ const handlebars = require('express-handlebars');
 const products = require('./routes/products');
 const bodyParser = require('body-parser');
 const querystring = require('querystring');
+const methodOverride = require('method-override');
 let app = express();
 
 app.use(bodyParser.urlencoded({extended: false}));
+app.use(methodOverride('_method'));
 
 const hbs = handlebars.create({
   extname: '.hbs',
